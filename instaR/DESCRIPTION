@@ -1,0 +1,19 @@
+Package: instaR
+Title: Access to Instagram API via R
+Description: Provides an interface to the Instagram API
+Version: 0.1
+Date: 2014/01/31
+Author: Pablo Barbera <pablo.barbera@nyu.edu>
+Maintainer: Pablo Barbera <pablo.barbera@nyu.edu>
+Depends:
+    R (>= 2.12.0),
+    httr,
+    rjson
+License: GPL-2
+Collate:
+    'getFollowers.R'
+    'getFollows.R'
+    'getUser.R'
+    'instaOAuth.R'
+    'searchInstagram.R'
+    'utils.R'
