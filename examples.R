@@ -25,7 +25,7 @@ gezi <- searchInstagram(lat=41.0383, lng=28.9869, distance=500,
     token=token, n=200, folder="gezi")
 
 # downloading my 100 most recent pictures
-pablo <- getUser("pablobarbera", token, n=300, folder="pablo_pics")
+pablo <- getUser("pablobarbera", token, n=100, folder="pablo_pics")
 
 # downloading 100 recent pictures from someone else
 wh <- getUser("whitehouse", token, n=100, folder="WH_pics")
