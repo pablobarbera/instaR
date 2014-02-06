@@ -2,7 +2,7 @@
 #' @export
 #'
 #' @title 
-#' Get the most recent media published by a user.
+#' Extract recent media published by a user.
 #'
 #' @description
 #' \code{getUser} retrieves public media from a given user and, optionally,
@@ -34,7 +34,7 @@
 #' }
 #'
 
-getUser <- function(username, token, n=20, folder=NULL, userid=NULL, verbose=TRUE){
+getUser <- function(username, token, n=30, folder=NULL, userid=NULL, verbose=TRUE){
 
     if (is.null(userid)){
         url <- paste0("https://api.instagram.com/v1/users/search?q=", username)
@@ -43,8 +43,12 @@ getUser <- function(username, token, n=20, folder=NULL, userid=NULL, verbose=TRU
         userid <- as.numeric(content$data[[1]]$id)
     }
 
-    url <- paste0("https://api.instagram.com/v1/users/", userid, "/media/recent")
+    url <- paste0("https://api.instagram.com/v1/users/", userid, "/media/recent?count=",
+        as.character(min(c(n, 30))))
     content <- callAPI(url, token)
+    if (content$meta$code==400){
+        stop(content$meta$error_message)
+    }
     l <- length(content$data)
     if (verbose) cat(l, "posts ")
 

@@ -63,10 +63,19 @@ callAPI <- function(url, token){
     if (class(token)!="config"){
         stop("Error in access token. See help for details.")
     }
-    content <- fromJSON(rawToChar(url.data$content), unexpected.escape = "skip")
-    if (length(content$error)>0){
-        stop(content$meta)
-    }   
+    error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 
+        unexpected.escape = "skip"), error=function(e) e)
+    # retrying 3 times if error
+    if (inherits(error, 'error')){
+        err <- 0
+        while (inherits(error, 'error')){
+            Sys.sleep(.5)
+            error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 
+                unexpected.escape = "skip"), error=function(e) e)
+            err <- err + 1
+            if (err==3){ stop("Error!") }
+        }
+    }
     return(content)
 }
 

@@ -1,8 +1,8 @@
 \name{getUser}
 \alias{getUser}
-\title{Get the most recent media published by a user.}
+\title{Extract recent media published by a user.}
 \usage{
-  getUser(username, token, n = 20, folder = NULL,
+  getUser(username, token, n = 30, folder = NULL,
     userid = NULL, verbose = TRUE)
 }
 \arguments{

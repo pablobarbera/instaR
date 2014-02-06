@@ -39,47 +39,34 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
         userid <- as.numeric(content$data[[1]]$id)
     }
 
-    url <- paste0("https://api.instagram.com/v1/users/", userid, "/followed-by")
+    url <- paste0("https://api.instagram.com/v1/users/", userid, 
+        "/followed-by?count=100")
     content <- callAPI(url, token)
     l <- length(content$data)
     if (verbose) cat(l, "users ")
 
-    ## retrying 3 times if error was found
-    error <- 0
-    while (is.null(content$meta) | content$meta != 200){
-        cat("Error!\n")
-        Sys.sleep(0.5)
-        error <- error + 1
-        content <- callAPI(url, token)      
-        if (error==3){ stop("Error") }
-    }
+    ## Error trap
     if (length(content$data)==0){ 
         stop("Error. Zero followers?")
     }
 
     df <- userListToDF(content$data)
 
-
     if (length(content$pagination)>0){
 
         df.list <- list(df)
         while (length(content$data)>0 && (length(content$pagination)!=0) &&
             !is.null(content$pagination['next_url'])){
-                
-            content <- callAPI(content$pagination['next_url'], token)
+            cat(content$pagination$'next_url', "\n")    
+            error <- tryCatch(content <- callAPI(content$pagination['next_url'], 
+                token), error=function(e) e)
+            if (inherits(error, 'error')){
+                Sys.sleep(1)
+                content <- callAPI(content$pagination['next_url'], token)
+            }
             l <- l + length(content$data)
             if (length(content$data)>0){ cat(l, " ")}  
-        
-            ## retrying 3 times if error was found
-            error <- 0
-            while (is.null(content$meta) | content$meta != 200){
-                cat("Error!\n")
-                Sys.sleep(0.5)
-                error <- error + 1
-                content <- callAPI(url, token)      
-                if (error==3){ stop("Error") }
-            }
-            
+                   
             new.df <- userListToDF(content$data)
      
             df.list <- c(df.list, list(new.df))
