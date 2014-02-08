@@ -14,6 +14,7 @@ Collate:
     'getFollowers.R'
     'getFollows.R'
     'getUser.R'
+    'getUserMedia.R'
     'instaOAuth.R'
     'searchInstagram.R'
     'utils.R'

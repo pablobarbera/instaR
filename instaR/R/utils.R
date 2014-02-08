@@ -55,6 +55,20 @@ userListToDF <- function(data){
     return(df)
 }
 
+userDataToDF <- function(data){
+    df <- data.frame(
+        username = data$username,
+        bio = data$bio,
+        website = data$website,
+        profile_picture = data$profile_picture,
+        full_name = data$full_name,
+        media_count = data$counts$media,
+        followed_by = data$counts$followed_by,
+        follows = data$counts$follows,
+        stringsAsFactors=F)
+    return(df)
+}
+
 
 callAPI <- function(url, token){
     if (class(token)=="config"){
