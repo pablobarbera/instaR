@@ -75,7 +75,8 @@ callAPI <- function(url, token){
         url.data <- GET(url, config=token)
     }
     if (class(token)=="Token2.0"){
-        url.data <- GET(url, config(token=token))
+        url.data <- GET(paste0(url, "&access_token",
+            token$credentials$access_token))
     }  
     if (class(token)!="config" & class(token)!="Token2.0"){
         stop("Error in access token. See help for details.")

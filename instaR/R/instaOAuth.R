@@ -49,7 +49,7 @@ instaOAuth <- function(app_id, app_secret, scope="basic"){
     ## getting callback URL
     full_url <- oauth_callback()
     full_url <- gsub("(.*localhost:[0-9]{1,5}/).*", x=full_url, replacement="\\1")
-    full_url <- paste0(full_url, "custom/OAuth/cred")
+
     message <- paste("Copy and paste into 'OAuth redirect_uri' on Instagram App Settings:", 
         full_url, "\nWhen done, press any key to continue...")
     ## prompting user to introduce callback URL in app page
@@ -61,19 +61,20 @@ instaOAuth <- function(app_id, app_secret, scope="basic"){
 
     ## before httr 0.3
     if (packageVersion('httr')$minor < 3){
-        insta_token <- oauth2.0_token(instagram, myapp)
+        insta_token <- oauth2.0_token(instagram, myapp, scope=scope)
         token <- sign_oauth2.0(insta_token$access_token)
         if (GET("https://api.instagram.com/v1/users/self/feed?count=1", 
-            config=fb_oauth)$status==200){
+            config=token)$status==200){
             message("Authentication successful.")
         }
     }
 
     ## with httr 0.3
     if (packageVersion('httr')$minor >= 3){
-        token <- oauth2.0_token(instagram, myapp)
-        if (GET("https://api.instagram.com/v1/users/self/feed?count=1", 
-            config(token=fb_oauth))$status==200){
+        token <- oauth2.0_token(instagram, myapp, cache=FALSE, scope=scope)
+        if (GET(paste0("https://api.instagram.com/v1/users/self/feed?count=1", 
+                "&access_token=", 
+                token$credentials$access_token))$status==200){
             message("Authentication successful.")
         }   
     }
