@@ -1,5 +1,6 @@
 export(getFollowers)
 export(getFollows)
+export(getTagCount)
 export(getUser)
 export(getUserMedia)
 export(instaOAuth)

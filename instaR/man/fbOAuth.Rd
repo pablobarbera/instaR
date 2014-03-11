@@ -34,12 +34,6 @@
   will open and sign the token. If everything works works
   well, you will get a message that says you can return to
   R.
-
-  Note that the authentication process will NOT work
-  correctly in RStudio. As an alternative, create your
-  token in R from the command line interface or the R
-  application, save it as a file, and then open it up from
-  RStudio.
 }
 \examples{
 \dontrun{

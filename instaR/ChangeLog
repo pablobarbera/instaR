@@ -1,2 +1,6 @@
-2013-02-01 - version 0.1:
+2014-02-01 - version 0.1:
    - Initial release on GitHub
+2014-02-20 - version 0.1.1:
+    - Added getTagCount function
+2014-03-20 - version 0.1.2
+    - Now compatible with httr 0.3

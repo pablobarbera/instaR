@@ -21,10 +21,6 @@
 #' R. A new browser window will open and sign the token. If everything works
 #' works well, you will get a message that says you can return to R.
 #'
-#' Note that the authentication process will NOT work correctly in RStudio. As an
-#' alternative, create your token in R from the command line interface or the R
-#' application, save it as a file, and then open it up from RStudio.
-#' 
 #'
 #' @author
 #' Pablo Barbera \email{pablo.barbera@@nyu.edu}
@@ -62,14 +58,35 @@ instaOAuth <- function(app_id, app_secret, scope="basic"){
     instagram <- oauth_endpoint(NULL, "authorize", "access_token",
         base_url = "https://api.instagram.com/oauth")
     myapp <- oauth_app("instagram", app_id, app_secret)
-    insta_token <- oauth2.0_token(instagram, myapp)
-    token <- sign_oauth2.0(insta_token$access_token)
-    ## testing that authentication was successful. 
 
-    if(GET("https://api.instagram.com/v1/users/self/feed?count=1", 
-        config=token)$status==200){
-        message("Authentication successful.")
+    ## before httr 0.3
+    if (packageVersion('httr')$minor < 3){
+        insta_token <- oauth2.0_token(instagram, myapp)
+        token <- sign_oauth2.0(insta_token$access_token)
+        if (GET("https://api.instagram.com/v1/users/self/feed?count=1", 
+            config=fb_oauth)$status==200){
+            message("Authentication successful.")
+        }
     }
+
+    ## with httr 0.3
+    if (packageVersion('httr')$minor >= 3){
+        token <- oauth2.0_token(instagram, myapp)
+        if (GET("https://api.instagram.com/v1/users/self/feed?count=1", 
+            config(token=fb_oauth))$status==200){
+            message("Authentication successful.")
+        }   
+    }
+
     return(token)
 }
+
+
+
+
+
+
+
+
+
 

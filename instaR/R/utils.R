@@ -74,7 +74,10 @@ callAPI <- function(url, token){
     if (class(token)=="config"){
         url.data <- GET(url, config=token)
     }
-    if (class(token)!="config"){
+    if (class(token)=="Token2.0"){
+        url.data <- GET(url, config(token=token))
+    }  
+    if (class(token)!="config" & class(token)!="Token2.0"){
         stop("Error in access token. See help for details.")
     }
     error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 
