@@ -102,8 +102,9 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
             
             df.list <- c(df.list, list(new.df))
         }
+        df <- do.call(rbind, df.list)
     }
-    df <- do.call(rbind, df.list)
+    
     return(df)
 }
 

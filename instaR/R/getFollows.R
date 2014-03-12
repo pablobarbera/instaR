@@ -60,8 +60,8 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
     df <- userListToDF(content$data)
 
     if (length(content$pagination)>0){
-
         df.list <- list(df)
+
         while (length(content$data)>0 && (length(content$pagination)!=0) &&
             !is.null(content$pagination['next_url'])){
                 

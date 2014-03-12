@@ -79,6 +79,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
     }
 
     df <- searchListToDF(content$data)
+    
 
     if (!is.null(folder)){
         if (verbose) cat("Downloading pictures...")
@@ -93,13 +94,13 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
 
     if (n>20){
 
+        df.list <- list(df)
+        
         if (length(content$pagination)>0) next_url <- content$pagination['next_url']
         if (length(content$pagination)==0){
             next_url <- paste0(url, "&max_timestamp=", 
                 as.numeric(min(df$created_time)))
         }
-
-        df.list <- list(df)
 
         while (l<n & length(content$data)>0 & !is.null(next_url)){
  
@@ -136,8 +137,9 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
                     as.numeric(min(new.df$created_time)))
             }
         }
+        df <- do.call(rbind, df.list)
     }
-    df <- do.call(rbind, df.list)
+    
     return(df)
 }
 

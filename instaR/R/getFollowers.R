@@ -51,6 +51,7 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
     }
 
     df <- userListToDF(content$data)
+    
 
     if (length(content$pagination)>0){
 
@@ -71,8 +72,9 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
      
             df.list <- c(df.list, list(new.df))
         }
+        df <- do.call(rbind, df.list)
     }
-    df <- do.call(rbind, df.list)
+    
     return(df)
 }
 
