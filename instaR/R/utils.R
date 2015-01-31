@@ -71,14 +71,14 @@ userDataToDF <- function(data){
 
 
 callAPI <- function(url, token){
-    if (class(token)=="config"){
+    if (class(token)[1]=="config"){
         url.data <- GET(url, config=token)
     }
-    if (class(token)=="Token2.0"){
+    if (class(token)[1]=="Token2.0"){
         url.data <- GET(paste0(url, ifelse(grepl('\\?', url), "&", "?"),
                 "access_token=", token$credentials$access_token))
     }  
-    if (class(token)!="config" & class(token)!="Token2.0"){
+    if (class(token)[1]!="config" & class(token)[1]!="Token2.0"){
         stop("Error in access token. See help for details.")
     }
     error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 

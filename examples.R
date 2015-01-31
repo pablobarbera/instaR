@@ -2,7 +2,7 @@
 # app_secret <- "YYYYYXXXXYYY"
 # token <- instaOAuth(app_id, app_secret)
 
-load("~/insta_token")
+load("~/Dropbox/credentials/instagram/insta_token")
 library(instaR)
 
 # getting pictures with #euromaidan hashtag
