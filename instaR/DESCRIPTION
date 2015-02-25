@@ -19,3 +19,4 @@ Collate:
     'searchInstagram.R'
     'utils.R'
     'getTagCount.R'
+    'getComments.R'
