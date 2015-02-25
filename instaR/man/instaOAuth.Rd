@@ -14,7 +14,7 @@ at \url{http://instagram.com/developer}}
 Available at \url{http://instagram.com/developer}.}
 }
 \description{
-\code{fbOAuth} creates an OAuth access token that enables R to make
+\code{instaOAuth} creates an OAuth access token that enables R to make
 authenticated calls to the Instagram API. The token can be saved as a
 file in disk to be re-used in future sessions. This function relies on the
 \code{httr} package to create the OAuth token, and is a simplified version
