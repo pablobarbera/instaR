@@ -18,7 +18,6 @@
 #' @param verbose If \code{TRUE} (default), outputs details about progress
 #' of function on the console.
 #'
-#'
 #' @examples \dontrun{
 #' ## See examples for instaOAuth to know how token was created.
 #' ## Downloading list of followers of @@senjohnmccain
