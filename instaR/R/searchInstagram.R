@@ -88,7 +88,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
         for (i in 1:nrow(df)){
             filename <- paste0(getwd(), "/", folder, "/", 
                 df$id[i], "_", df$username[i], ".jpg")
-            try(download.file(df$image_url[i], filename, quiet=TRUE))
+            try(r <- GET(df$image_url[i], write_disk(filename, overwrite=TRUE)))
         }
     }
 
@@ -125,7 +125,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
                 for (i in 1:nrow(new.df)){
                     filename <- paste0(getwd(), "/", folder, "/", 
                         new.df$id[i], "_", new.df$username[i], ".jpg")
-                    try(download.file(new.df$image_url[i], filename, quiet=TRUE))
+                    try(r <- GET(new.df$image_url[i], write_disk(filename, overwrite=TRUE)))
                 }
             }
             
