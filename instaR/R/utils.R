@@ -116,6 +116,6 @@ downloadPictures <- function(df, folder){
     for (i in 1:nrow(df)){
         filename <- paste0(getwd(), "/", folder, "/", 
             df$id[i], ".jpg")
-        try(download.file(df$image_url[i], filename, quiet=TRUE))
+        try(r <- GET(df$image_url[i], write_disk(filename, overwrite=TRUE)))
     }
 }
