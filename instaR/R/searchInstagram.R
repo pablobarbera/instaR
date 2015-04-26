@@ -41,6 +41,8 @@
 #' @param verbose If \code{TRUE} (default), outputs details about progress
 #' of function on the console.
 #'
+#' @param sleep Number of seconds between API calls (default is 0).
+#'
 #' @examples \dontrun{
 #' ## See examples for instaOAuth to know how token was created.
 #' ## Searching and downloading 100 public media that mention #obama
@@ -53,7 +55,7 @@
 #'
 
 searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL, 
-    distance=NULL, folder=NULL, verbose=TRUE){
+    distance=NULL, folder=NULL, verbose=TRUE, sleep=0){
 
     if (!is.null(tag)) url <- paste0("https://api.instagram.com/v1/tags/", tag, "/media/recent?")
     if (!is.null(lat) && !is.null(lng)) {
@@ -91,6 +93,8 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
             try(r <- GET(df$image_url[i], write_disk(filename, overwrite=TRUE)))
         }
     }
+
+    if (sleep!=0){ Sys.sleep(sleep)}
 
     if (n>20){
 
@@ -136,6 +140,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
                 next_url <- paste0(url, "&max_timestamp=", 
                     as.numeric(min(new.df$created_time)))
             }
+            if (sleep!=0){ Sys.sleep(sleep)}
         }
         df <- do.call(rbind, df.list)
     }

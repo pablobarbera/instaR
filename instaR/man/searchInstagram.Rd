@@ -6,7 +6,7 @@
 from a given area}
 \usage{
 searchInstagram(tag = NULL, token, n = 100, lat = NULL, lng = NULL,
-  distance = NULL, folder = NULL, verbose = TRUE)
+  distance = NULL, folder = NULL, verbose = TRUE, sleep = 0)
 }
 \arguments{
 \item{tag}{Hashtag used to filter media. It is only possible for a single
@@ -27,6 +27,8 @@ to this folder.}
 
 \item{verbose}{If \code{TRUE} (default), outputs details about progress
 of function on the console.}
+
+\item{sleep}{Number of seconds between API calls (default is 0).}
 }
 \description{
 \code{searchInstagram} retrieves public pictures and video whose caption
