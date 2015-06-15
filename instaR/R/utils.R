@@ -43,6 +43,16 @@ searchListToDF <- function(data){
     return(df)
 }
 
+  likesListToDF <- function(data){
+    df <- data.frame(
+      username =  unlistWithNA(data, 'username'),
+      full_name =  unlistWithNA(data, 'full_name'),
+      id =  unlistWithNA(data, 'id'),
+      profile_picture =  unlistWithNA(data, 'profile_picture'),
+      stringsAsFactors=F)
+    return(df)
+  }
+  
 commentsListToDF <- function(data){
     df <- data.frame(
         created_time = as.POSIXct(as.numeric(unlistWithNA(data, 'created_time')), origin="1970-01-01"),
