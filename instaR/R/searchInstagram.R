@@ -106,7 +106,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
                 as.numeric(min(df$created_time)))
         }
 
-        while (l<n & length(content$data)>0 & !is.null(next_url)){
+        while (l<n & length(content$data)>0 & !is.null(next_url[[1]])){
  
             content <- callAPI(next_url, token)
             l <- l + length(content$data)
