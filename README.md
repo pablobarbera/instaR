@@ -11,6 +11,10 @@ INITIAL RELEASE.
 
 This package provides a series of functions that allow R users to access Instagram's API to search for media that mention specific hashtags or were sent from a certain location, to download recent pictures from a given users, and to capture lists of followers.
 
+Getting Started from GitHub
+To install from github install devtools package and install from github using install_github("pablobarbera/instaR/instaR" )
+
+The httpuv package is needed to trigger the web request when authorizing against Instragram using instaOAuth. When configuring the client on https://instagram.com/developer/clients/ to receive your app_id and app_secret ensure the REDIRECT URI includes the trailing / e.g. http://localhost:1410/
 
 <script type="text/javascript">
 
