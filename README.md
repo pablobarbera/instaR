@@ -16,6 +16,15 @@ To install from github, first install the devtools package and and then run ``de
 
 The httpuv package is needed to trigger the web request when authorizing against Instragram using instaOAuth. When configuring the client on https://instagram.com/developer/clients/ to receive your `app_id` and `app_secret` ensure the REDIRECT URI includes the trailing / e.g. `http://localhost:1410/`
 
+Functionalities include:
+* Downloading pictures from users / using hashtags
+* Getting comments for individual posts
+* Getting likes for individual posts
+* Getting basic user information
+* Getting a hash tag count
+
+For examples please see examples.r
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
