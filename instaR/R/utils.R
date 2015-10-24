@@ -95,20 +95,21 @@ userDataToDF <- function(data){
 popularDataToDF <- function(data){
   df <- data.frame(
     type = unlistWithNA(data, 'type'),
+    longitude = unlistWithNA(data, c('location', 'longitude')),
+    latitude = unlistWithNA(data, c('location', 'latitude')),
+    location_name = unlistWithNA(data, c('location', 'name')),
+    location_id = unlistWithNA(data, c('location', 'name')),
+    comments_count = unlistWithNA(data, c('comments', 'count')),
     filter = unlistWithNA(data, 'filter'),
     created_time = as.POSIXct(as.numeric(unlistWithNA(data, 'created_time')), origin="1970-01-01"),
-    like_count = unlistWithNA(data, c('likes', 'count')),
-    id = unlistWithNA(data, 'id'),
-    username = unlistWithNA(data, c('user', 'username')),
-    userid = unlistWithNA(data, c('user', 'id')),
-    fullname = unlistWithNA(data, c('user', 'full_name')),
-    num_comments = unlistWithNA(data, c('comments', 'count')),
     link = unlistWithNA(data, 'link'),
-    town = unlistWithNA(data, c('location', 'name')),
-    lat = unlistWithNA(data, c('location', 'latitude')),
-    long = unlistWithNA(data, c('location', 'longitude')),
-    loc_id = unlistWithNA(data, c('location', 'id')),
+    likes_count = unlistWithNA(data, c('likes', 'count')),
+    image_url = unlistWithNA(data, c('images', 'standard_resolution', 'url')),
     caption = unlistWithNA(data, c('caption', 'text')),
+    username = unlistWithNA(data, c('user', 'username')),
+    user_id = unlistWithNA(data, c('user', 'id')),
+    user_fullname = unlistWithNA(data, c('user', 'full_name')),
+    id = unlistWithNA(data, 'id'),
     stringsAsFactors=F)
   return(df)
 }
