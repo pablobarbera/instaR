@@ -39,6 +39,9 @@ mccain2 <- getFollows("senjohnmccain", token)
 # get list of comments for an instragram picture (using the first of the wh pictures downloaded above)
 wh_comments <- getComments(wh$id[1], token)
 
+# get list of likes for an instagram picture
+wh_likes <- getLikes(wh$id[1], token)
+
 # TO-DO list:
 # get feed of pictures from friends
 # add min_id, max_id as arguments
