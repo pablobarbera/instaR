@@ -23,3 +23,4 @@ Collate:
     'getTagCount.R'
     'getComments.R'
     'getLikes.R'
+    'getPopular.R'
