@@ -8,3 +8,6 @@
 	- added getLikes function
 2015-08-06 - version 0.1.4
 	- fixes bug in instaOAuth
+2015-10-25 - version 0.1.5
+	- getPopular function
+	- minor fixes
