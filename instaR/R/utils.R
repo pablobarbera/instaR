@@ -98,7 +98,7 @@ popularDataToDF <- function(data){
     longitude = unlistWithNA(data, c('location', 'longitude')),
     latitude = unlistWithNA(data, c('location', 'latitude')),
     location_name = unlistWithNA(data, c('location', 'name')),
-    location_id = unlistWithNA(data, c('location', 'name')),
+    location_id = unlistWithNA(data, c('location', 'id')),
     comments_count = unlistWithNA(data, c('comments', 'count')),
     filter = unlistWithNA(data, 'filter'),
     created_time = as.POSIXct(as.numeric(unlistWithNA(data, 'created_time')), origin="1970-01-01"),
