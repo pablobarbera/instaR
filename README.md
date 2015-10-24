@@ -20,10 +20,11 @@ Functionalities include:
 * Downloading pictures from users / using hashtags
 * Getting comments for individual posts
 * Getting likes for individual posts
+* Getting the most popular posts
 * Getting basic user information
 * Getting a hash tag count
 
-For examples please see examples.r
+For examples please see examples.R
 
 <script type="text/javascript">
 
