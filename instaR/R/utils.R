@@ -92,6 +92,27 @@ userDataToDF <- function(data){
     return(df)
 }
 
+popularDataToDF <- function(data){
+  df <- data.frame(
+    type = unlistWithNA(data, 'type'),
+    filter = unlistWithNA(data, 'filter'),
+    created_time = as.POSIXct(as.numeric(unlistWithNA(data, 'created_time')), origin="1970-01-01"),
+    like_count = unlistWithNA(data, c('likes', 'count')),
+    id = unlistWithNA(data, 'id'),
+    username = unlistWithNA(data, c('user', 'username')),
+    userid = unlistWithNA(data, c('user', 'id')),
+    fullname = unlistWithNA(data, c('user', 'full_name')),
+    num_comments = unlistWithNA(data, c('comments', 'count')),
+    link = unlistWithNA(data, 'link'),
+    town = unlistWithNA(data, c('location', 'name')),
+    lat = unlistWithNA(data, c('location', 'latitude')),
+    long = unlistWithNA(data, c('location', 'longitude')),
+    loc_id = unlistWithNA(data, c('location', 'id')),
+    caption = unlistWithNA(data, c('caption', 'text')),
+    stringsAsFactors=F)
+  return(df)
+}
+
 
 callAPI <- function(url, token){
     if (class(token)[1]=="config"){
