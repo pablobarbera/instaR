@@ -42,12 +42,15 @@ wh_comments <- getComments(wh$id[1], token)
 # get list of likes for an instagram picture
 wh_likes <- getLikes(wh$id[1], token)
 
+# get tag count for a tag
+tag_count <- getTagCount("obama", token)
+
+# get user information
+obama_info <- getUser("obama", token)
+
 # TO-DO list:
 # get feed of pictures from friends
 # add min_id, max_id as arguments
 # pictures from location IDs
-# download list of likes/comments for given pictures
 # download popular pictures
-# get information about a hashtag (count)
 # search for tags by name
-
