@@ -49,7 +49,7 @@ tag_count <- getTagCount("obama", token)
 obama_info <- getUser("obama", token)
 
 # get information about a location, using a location ID
-location_info <- getLocation(4132, token)
+location_info <- getLocation(423423, token)
 
 # TO-DO list:
 # get feed of pictures from friends
