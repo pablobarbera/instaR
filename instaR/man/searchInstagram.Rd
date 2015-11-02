@@ -6,7 +6,8 @@
 from a given area}
 \usage{
 searchInstagram(tag = NULL, token, n = 100, lat = NULL, lng = NULL,
-  distance = NULL, folder = NULL, verbose = TRUE, sleep = 0)
+  distance = NULL, folder = NULL, mindate = NULL, maxdate = NULL,
+  verbose = TRUE, sleep = 0)
 }
 \arguments{
 \item{tag}{Hashtag used to filter media. It is only possible for a single
@@ -25,6 +26,10 @@ hashtag.}
 \item{folder}{If different than \code{NULL}, will download all pictures
 to this folder.}
 
+\item{mindate}{}
+
+\item{maxdate}{span between dates should not be larger than 7 days, default is 5}
+
 \item{verbose}{If \code{TRUE} (default), outputs details about progress
 of function on the console.}
 
@@ -38,8 +43,6 @@ information about each picture or video, and optionally will download
 all pictures to a specific folder
 }
 \details{
-This function will only return media up to 7 days old.
-
 It is only possible to apply one filter at a time: either search by hashtag
 OR search by coordinates.
 }
@@ -49,9 +52,11 @@ OR search by coordinates.
 ## Searching and downloading 100 public media that mention #obama
  load("my_oauth")
  obama <- searchInstagram( tag="obama", token=my_oauth, n=100, folder="obama")
-## Searching and downloading pictures sent from Times Square
+## Searching and downloading pictures sent from Times Square with a minimum date
+## of 2013-12-31 and a maximum date of 2014-01-01
  tsq <- searchInstagram( lat=40.7577, lng=-73.9857, distance=500,
-    token=my_oauth, n=500, folder="timessquare")
+    token=my_oauth, n=500, folder="timessquare",
+    mindate="2014-12-31", maxdate="2014-01-01")
 }
 }
 \author{

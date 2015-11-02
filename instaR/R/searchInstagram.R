@@ -13,7 +13,6 @@
 #' all pictures to a specific folder
 #'
 #' @details
-#' This function will only return media up to 7 days old.
 #'
 #' It is only possible to apply one filter at a time: either search by hashtag
 #' OR search by coordinates.
@@ -52,9 +51,11 @@
 #' ## Searching and downloading 100 public media that mention #obama
 #'  load("my_oauth")
 #'  obama <- searchInstagram( tag="obama", token=my_oauth, n=100, folder="obama")
-#' ## Searching and downloading pictures sent from Times Square with a minimum date of 2013-12-31 and a maximum date of 2014-01-01
+#' ## Searching and downloading pictures sent from Times Square with a minimum date 
+#' ## of 2013-12-31 and a maximum date of 2014-01-01
 #'  tsq <- searchInstagram( lat=40.7577, lng=-73.9857, distance=500, 
-#'     token=my_oauth, n=500, folder="timessquare", mindate="2014-12-31", maxdate="2014-01-01")
+#'     token=my_oauth, n=500, folder="timessquare", 
+#'     mindate="2014-12-31", maxdate="2014-01-01")
 #' }
 #'
 

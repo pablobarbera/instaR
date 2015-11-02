@@ -31,7 +31,8 @@ tsq <- searchInstagram(lat=40.7577, lng=-73.9857, distance=500,
     token=token, n=500, folder="timessquare", mindate="2015-01-01", maxdate="2015-01-03")
 
 # getting pictures with #obama hashtag around specific dates
-obama <- searchInstagram("obama", token, n=100, folder="obama", mindate="2015-01-01", maxdate="2015-01-03")
+obama <- searchInstagram("obama", token, n=100, folder="obama", 
+	mindate="2015-01-01", maxdate="2015-01-03")
 
 # downloading my 100 most recent pictures
 pablo <- getUserMedia("pablobarbera", token, n=100, folder="pablo_pics")
