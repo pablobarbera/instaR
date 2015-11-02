@@ -24,3 +24,4 @@ Collate:
     'getComments.R'
     'getLikes.R'
     'getPopular.R'
+    'getLocation.R'
