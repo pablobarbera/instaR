@@ -24,6 +24,15 @@ north <- searchInstagram(lat=90, lng=0, distance=5000,
 gezi <- searchInstagram(lat=41.0383, lng=28.9869, distance=500, 
     token=token, n=200, folder="gezi")
 
+# search around location around a specific time (default time span is 5 days, max is 7)
+# maxdate and mindate use the input YYYY-MM-DD HH:MM:SS GMT
+# e.g. mindate="2015-01-10 20:00:00 EST"
+tsq <- searchInstagram(lat=40.7577, lng=-73.9857, distance=500, 
+    token=token, n=500, folder="timessquare", mindate="2015-01-01", maxdate="2015-01-03")
+
+# getting pictures with #obama hashtag around specific dates
+obama <- searchInstagram("obama", token, n=100, folder="obama", mindate="2015-01-01", maxdate="2015-01-03")
+
 # downloading my 100 most recent pictures
 pablo <- getUserMedia("pablobarbera", token, n=100, folder="pablo_pics")
 
