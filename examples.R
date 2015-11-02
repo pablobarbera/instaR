@@ -55,5 +55,4 @@ location_info <- getLocation(423423, token)
 # get feed of pictures from friends
 # add min_id, max_id as arguments
 # pictures from location IDs
-# download popular pictures
 # search for tags by name
