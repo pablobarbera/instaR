@@ -42,7 +42,7 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
     url <- paste0("https://api.instagram.com/v1/users/", userid, "/follows")
     content <- callAPI(url, token)
     l <- length(content$data)
-    if (verbose) messsage(l, " follows")
+    if (verbose) message(l, " follows")
 
     ## retrying 3 times if error was found
     error <- 0

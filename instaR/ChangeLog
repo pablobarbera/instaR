@@ -13,3 +13,6 @@
 	- minor fixes
 2015-10-31 - version 0.1.6
 	- getLocation function
+2015-11-03 - version 0.2.0
+	- minor fixes
+	- first CRAN release
