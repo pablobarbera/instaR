@@ -5,7 +5,7 @@ Version: 0.1.5
 Date: 2015/10/25
 Author: Pablo Barbera [aut, cre], Tiago Dantas [ctb], Jonne Guyt [ctb]
 Maintainer: Pablo Barbera <pablo.barbera@nyu.edu>
-URL: http://github.com/pablobarbera/instaR/instaR
+URL: https://github.com/pablobarbera/instaR/instaR
 BugReports: https://github.com/pablobarbera/instaR/issues
 Depends:
     R (>= 2.12.0),

@@ -12,6 +12,9 @@ at \url{http://instagram.com/developer}}
 
 \item{app_secret}{string, Client Secret of application to be used to create OAUth token.
 Available at \url{http://instagram.com/developer}.}
+
+\item{scope}{string, specifies scope of access to the authenticated user data. See
+\url{http://instagram.com/developer/authentication/#scope} for available options.}
 }
 \description{
 \code{instaOAuth} creates an OAuth access token that enables R to make

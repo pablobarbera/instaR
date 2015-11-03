@@ -4,12 +4,12 @@
 \alias{getLocation}
 \title{Get basic information about a location using a location ID}
 \usage{
-getLocation(locid, token)
+getLocation(location_id, token)
 }
 \arguments{
-\item{token}{An OAuth token created with \code{instaOAuth}.}
+\item{location_id}{numeric, location id.}
 
-\item{location}{id.}
+\item{token}{An OAuth token created with \code{instaOAuth}.}
 }
 \description{
 \code{getLocation} retrieves location information
@@ -19,7 +19,7 @@ getLocation(locid, token)
 ## See examples for instaOAuth to know how token was created.
 ## Capturing information about a location
  load("my_oauth")
- loc_id_info <- getLocation( location=423423, token=my_oauth,)
+ loc_id_info <- getLocation( location_id=423423, token=my_oauth,)
 }
 }
 \author{

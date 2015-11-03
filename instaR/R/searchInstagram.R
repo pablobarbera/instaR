@@ -17,9 +17,12 @@
 #' It is only possible to apply one filter at a time: either search by hashtag
 #' OR search by coordinates.
 #'
+#' The \code{mindate} and \code{maxdata} search parameters only work when searching
+#' by location, not when searching by tag.
+#'
 #' @author
 #' Pablo Barbera \email{pablo.barbera@@nyu.edu}
-#' @seealso \code{\link{fbOAuth}}
+#' @seealso \code{\link{instaOAuth}}
 #'
 #' @param tag Hashtag used to filter media. It is only possible for a single
 #' hashtag.
@@ -34,9 +37,9 @@
 #' 
 #' @param distance Default is 1km (distance=1000), max distance is 5km.
 #' 
-#' @param mindate 
+#' @param mindate Minimum date for search period
 #' 
-#' @param maxdate span between dates should not be larger than 7 days, default is 5
+#' @param maxdate Maximum date for search period
 #'
 #' @param folder If different than \code{NULL}, will download all pictures
 #' to this folder.
@@ -71,6 +74,9 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
   }
   if (!is.null(mindate)) url <- paste0(url,"&min_timestamp=",as.numeric(as.POSIXct(mindate)))
   if (!is.null(maxdate)) url <- paste0(url,"&max_timestamp=",as.numeric(as.POSIXct(maxdate)))
+  if (!is.null(tag) & !is.null(mindate)){
+    message('"mindate" and "maxdate" options only work in combination with a location and will be ignored.')
+  }
   content <- callAPI(url, token)
   l <- length(content$data)
   if (l==0) stop("0 posts found.")
@@ -94,11 +100,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
     if (verbose) cat("Downloading pictures...")
     # creating folder if it doesn't exist
     dir.create(file.path(getwd(), folder), showWarnings = FALSE)
-    for (i in 1:nrow(df)){
-      filename <- paste0(getwd(), "/", folder, "/", 
-                         df$id[i], "_", df$username[i], ".jpg")
-      try(r <- GET(df$image_url[i], write_disk(filename, overwrite=TRUE)))
-    }
+    downloadPictures(df, folder)
   }
   
   if (sleep!=0){ Sys.sleep(sleep)}
@@ -108,11 +110,15 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
     df.list <- list(df)
     
     if (length(content$pagination)>0) next_url <- content$pagination['next_url']
-    if (length(content$pagination)==0){
+    if (length(content$pagination)==0 & is.null(mindate)){
       next_url <- paste0(url, "&max_timestamp=", 
                          as.numeric(min(df$created_time)))
     }
-    
+    if (length(content$pagination)==0 & !is.null(mindate)){
+      next_url <- gsub('max_timestamp=([0-9]{10})', 
+        paste0('max_timestamp=',as.numeric(min(df$created_time))-1), url)
+    }    
+
     while (l<n & length(content$data)>0 & !is.null(next_url[[1]])){
       
       content <- callAPI(next_url, token)
@@ -132,21 +138,20 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
       # downloading pictures
       if (!is.null(folder)){
         if (verbose) cat("Downloading pictures...")
-        # creating folder if it doesn't exist
-        for (i in 1:nrow(new.df)){
-          filename <- paste0(getwd(), "/", folder, "/", 
-                             new.df$id[i], "_", new.df$username[i], ".jpg")
-          try(r <- GET(new.df$image_url[i], write_disk(filename, overwrite=TRUE)))
-        }
+        downloadPictures(new.df, folder)
       }
       
       df.list <- c(df.list, list(new.df))
       
       if (length(content$pagination)>0) next_url <- content$pagination['next_url']
-      if (length(content$pagination)==0){
+      if (length(content$pagination)==0 & is.null(mindate)){
         next_url <- paste0(url, "&max_timestamp=", 
-                           as.numeric(min(new.df$created_time)))
+                         as.numeric(min(df$created_time)))
       }
+      if (length(content$pagination)==0 & !is.null(mindate)){
+        next_url <- gsub('max_timestamp=([0-9]{10})', 
+          paste0('max_timestamp=',as.numeric(min(df$created_time))), url)
+      } 
       if (sleep!=0){ Sys.sleep(sleep)}
     }
     df <- do.call(rbind, df.list)

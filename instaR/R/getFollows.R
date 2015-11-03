@@ -1,11 +1,11 @@
-#' @rdname getFollowers
+#' @rdname getFollows
 #' @export
 #'
 #' @title 
 #' Get the list of users a user follows.
 #'
 #' @description
-#' \code{getFollowers} retrieves the list of users that a given user follows,
+#' \code{getFollows} retrieves the list of users that a given user follows,
 #' as well as basic information about all of them.
 #'
 #' @author

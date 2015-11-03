@@ -10,7 +10,7 @@
 #' @author
 #' Jonne Guyt \email{j.y.guyt@@uva.nl}
 #'
-#' @param location id.
+#' @param location_id numeric, location id.
 #' 
 #' @param token An OAuth token created with \code{instaOAuth}.
 #'
@@ -18,13 +18,13 @@
 #' ## See examples for instaOAuth to know how token was created.
 #' ## Capturing information about a location
 #'  load("my_oauth")
-#'  loc_id_info <- getLocation( location=423423, token=my_oauth,)
+#'  loc_id_info <- getLocation( location_id=423423, token=my_oauth,)
 #' }
 #'
 
-getLocation <- function(locid, token){
+getLocation <- function(location_id, token){
   
-  url <- paste0("https://api.instagram.com/v1/locations/", locid)
+  url <- paste0("https://api.instagram.com/v1/locations/", location_id)
   content <- callAPI(url, token)
   if (content$meta$code==400){
     stop(content$meta$error_message)

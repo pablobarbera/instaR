@@ -26,9 +26,9 @@ hashtag.}
 \item{folder}{If different than \code{NULL}, will download all pictures
 to this folder.}
 
-\item{mindate}{}
+\item{mindate}{Minimum date for search period}
 
-\item{maxdate}{span between dates should not be larger than 7 days, default is 5}
+\item{maxdate}{Maximum date for search period}
 
 \item{verbose}{If \code{TRUE} (default), outputs details about progress
 of function on the console.}
@@ -45,6 +45,9 @@ all pictures to a specific folder
 \details{
 It is only possible to apply one filter at a time: either search by hashtag
 OR search by coordinates.
+
+The \code{mindate} and \code{maxdata} search parameters only work when searching
+by location, not when searching by tag.
 }
 \examples{
 \dontrun{
@@ -63,6 +66,6 @@ OR search by coordinates.
 Pablo Barbera \email{pablo.barbera@nyu.edu}
 }
 \seealso{
-\code{\link{fbOAuth}}
+\code{\link{instaOAuth}}
 }
 

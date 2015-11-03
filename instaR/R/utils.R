@@ -43,15 +43,15 @@ searchListToDF <- function(data){
     return(df)
 }
 
-  likesListToDF <- function(data){
+likesListToDF <- function(data){
     df <- data.frame(
-      username =  unlistWithNA(data, 'username'),
-      full_name =  unlistWithNA(data, 'full_name'),
-      id =  unlistWithNA(data, 'id'),
-      profile_picture =  unlistWithNA(data, 'profile_picture'),
-      stringsAsFactors=F)
+        username =  unlistWithNA(data, 'username'),
+        full_name =  unlistWithNA(data, 'full_name'),
+        id =  unlistWithNA(data, 'id'),
+        profile_picture =  unlistWithNA(data, 'profile_picture'),
+        stringsAsFactors=F)
     return(df)
-  }
+}
   
 commentsListToDF <- function(data){
     df <- data.frame(
@@ -117,23 +117,23 @@ popularDataToDF <- function(data){
 
 callAPI <- function(url, token){
     if (class(token)[1]=="config"){
-        url.data <- GET(url, config=token)
+        url.data <- httr::GET(url, config=token)
     }
     if (class(token)[1]=="Token2.0"){
-        url.data <- GET(paste0(url, ifelse(grepl('\\?', url), "&", "?"),
+        url.data <- httr::GET(paste0(url, ifelse(grepl('\\?', url), "&", "?"),
                 "access_token=", token$credentials$access_token))
     }  
     if (class(token)[1]!="config" & class(token)[1]!="Token2.0"){
         stop("Error in access token. See help for details.")
     }
-    error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 
+    error <- tryCatch(content <- rjson::fromJSON(rawToChar(url.data$content), 
         unexpected.escape = "skip"), error=function(e) e)
     # retrying 3 times if error
     if (inherits(error, 'error')){
         err <- 0
         while (inherits(error, 'error')){
             Sys.sleep(.5)
-            error <- tryCatch(content <- fromJSON(rawToChar(url.data$content), 
+            error <- tryCatch(content <- rjson::fromJSON(rawToChar(url.data$content), 
                 unexpected.escape = "skip"), error=function(e) e)
             err <- err + 1
             if (err==3){ stop("Error!") }
@@ -147,7 +147,7 @@ downloadPictures <- function(df, folder){
     dir.create(file.path(getwd(), folder), showWarnings = FALSE)
     for (i in 1:nrow(df)){
         filename <- paste0(getwd(), "/", folder, "/", 
-            df$id[i], ".jpg")
-        try(r <- GET(df$image_url[i], write_disk(filename, overwrite=TRUE)))
+                             df$id[i], "_", df$username[i], ".jpg")
+        try(r <- httr::GET(df$image_url[i], httr::write_disk(filename, overwrite=TRUE)))
     }
 }
