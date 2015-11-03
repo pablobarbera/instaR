@@ -116,15 +116,13 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
     }
     if (length(content$pagination)==0 & !is.null(mindate)){
       next_url <- gsub('max_timestamp=([0-9]{10})', 
-        paste0('max_timestamp=',as.numeric(min(df$created_time))-1), url)
+        paste0('max_timestamp=',as.numeric(min(df$created_time))), url)
     }    
 
     while (l<n & length(content$data)>0 & !is.null(next_url[[1]])){
       
       content <- callAPI(next_url, token)
-      l <- l + length(content$data)
-      if (length(content$data)>0){ cat(l, " ")}  
-      
+     
       ## retrying 3 times if error was found
       error <- 0
       while (is.null(content$meta) | content$meta != 200){
@@ -134,23 +132,29 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
       }
       
       new.df <- searchListToDF(content$data)
-      
+      if (all(new.df$id %in% unlist(lapply(df.list, '[[', 'id'))== TRUE)){
+        break
+      }
+
+      l <- l + length(content$data)
+      if (length(content$data)>0){ cat(l, " ")}  
+        
       # downloading pictures
       if (!is.null(folder)){
         if (verbose) cat("Downloading pictures...")
         downloadPictures(new.df, folder)
       }
-      
+        
       df.list <- c(df.list, list(new.df))
-      
+        
       if (length(content$pagination)>0) next_url <- content$pagination['next_url']
       if (length(content$pagination)==0 & is.null(mindate)){
         next_url <- paste0(url, "&max_timestamp=", 
-                         as.numeric(min(df$created_time)))
+                         as.numeric(min(new.df$created_time)))
       }
       if (length(content$pagination)==0 & !is.null(mindate)){
         next_url <- gsub('max_timestamp=([0-9]{10})', 
-          paste0('max_timestamp=',as.numeric(min(df$created_time))), url)
+          paste0('max_timestamp=',as.numeric(min(new.df$created_time))), url)
       } 
       if (sleep!=0){ Sys.sleep(sleep)}
     }
