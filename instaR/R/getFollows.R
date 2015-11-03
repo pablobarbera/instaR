@@ -47,7 +47,7 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
     ## retrying 3 times if error was found
     error <- 0
     while (is.null(content$meta) | content$meta != 200){
-        messsage("Error!")
+        message("Error!")
         Sys.sleep(0.5)
         error <- error + 1
         content <- callAPI(url, token)      
@@ -67,12 +67,12 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
                 
             content <- callAPI(content$pagination['next_url'], token)
             l <- l + length(content$data)
-            if (length(content$data)>0){ messsage(l, " follows")}  
+            if (length(content$data)>0){ message(l, " follows")}  
         
             ## retrying 3 times if error was found
             error <- 0
             while (is.null(content$meta) | content$meta != 200){
-                messsage("Error!")
+                message("Error!")
                 Sys.sleep(0.5)
                 error <- error + 1
                 content <- callAPI(url, token)      
