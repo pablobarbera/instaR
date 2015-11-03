@@ -34,7 +34,7 @@ getComments <- function(id, token, verbose=TRUE){
         "/comments")
     content <- callAPI(url, token)
     l <- length(content$data)
-    if (verbose) cat(l, "comments ")
+    if (verbose) message(l, " comments")
 
     ## Error trap
     if (length(content$data)==0){ 

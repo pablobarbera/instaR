@@ -42,12 +42,12 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
     url <- paste0("https://api.instagram.com/v1/users/", userid, "/follows")
     content <- callAPI(url, token)
     l <- length(content$data)
-    if (verbose) cat(l, "users ")
+    if (verbose) messsage(l, " follows")
 
     ## retrying 3 times if error was found
     error <- 0
     while (is.null(content$meta) | content$meta != 200){
-        cat("Error!\n")
+        messsage("Error!")
         Sys.sleep(0.5)
         error <- error + 1
         content <- callAPI(url, token)      
@@ -67,12 +67,12 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
                 
             content <- callAPI(content$pagination['next_url'], token)
             l <- l + length(content$data)
-            if (length(content$data)>0){ cat(l, " ")}  
+            if (length(content$data)>0){ messsage(l, " follows")}  
         
             ## retrying 3 times if error was found
             error <- 0
             while (is.null(content$meta) | content$meta != 200){
-                cat("Error!\n")
+                messsage("Error!")
                 Sys.sleep(0.5)
                 error <- error + 1
                 content <- callAPI(url, token)      

@@ -80,12 +80,12 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
   content <- callAPI(url, token)
   l <- length(content$data)
   if (l==0) stop("0 posts found.")
-  if (verbose) cat(l, "posts ")
+  if (verbose) message(l, " posts")
   
   ## retrying 3 times if error was found
   error <- 0
   while (is.null(content$meta) | content$meta != 200){
-    cat("Error!\n"); Sys.sleep(0.5); error <- error + 1
+    message("Error!"); Sys.sleep(0.5); error <- error + 1
     content <- callAPI(url, token)      
     if (error==3){ stop("Error") }
   }
@@ -97,7 +97,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
   
   
   if (!is.null(folder)){
-    if (verbose) cat("Downloading pictures...")
+    if (verbose) message("Downloading pictures...")
     # creating folder if it doesn't exist
     dir.create(file.path(getwd(), folder), showWarnings = FALSE)
     downloadPictures(df, folder)
@@ -126,7 +126,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
       ## retrying 3 times if error was found
       error <- 0
       while (is.null(content$meta) | content$meta != 200){
-        cat("Error!\n"); Sys.sleep(0.5); error <- error + 1
+        message("Error!"); Sys.sleep(0.5); error <- error + 1
         content <- callAPI(url, token)      
         if (error==3){ stop("Error") }
       }
@@ -137,11 +137,11 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
       }
 
       l <- l + length(content$data)
-      if (length(content$data)>0){ cat(l, " ")}  
+      if (length(content$data)>0){ message(l, " posts")}  
         
       # downloading pictures
       if (!is.null(folder)){
-        if (verbose) cat("Downloading pictures...")
+        if (verbose) message("Downloading pictures...")
         downloadPictures(new.df, folder)
       }
         

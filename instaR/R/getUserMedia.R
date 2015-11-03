@@ -50,12 +50,12 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
         stop(content$meta$error_message)
     }
     l <- length(content$data)
-    if (verbose) cat(l, "posts ")
+    if (verbose) message(l, " posts")
 
     ## retrying 3 times if error was found
     error <- 0
     while (is.null(content$meta) | content$meta != 200){
-        cat("Error!\n")
+        message("Error!")
         Sys.sleep(0.5)
         error <- error + 1
         content <- callAPI(url, token)      
@@ -68,7 +68,7 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
     df <- searchListToDF(content$data)
 
     if (!is.null(folder)){
-        if (verbose) cat("Downloading pictures...")
+        if (verbose) message("Downloading pictures...")
         downloadPictures(df, folder)
     }
 
@@ -80,12 +80,12 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
                 
             content <- callAPI(content$pagination['next_url'], token)
             l <- l + length(content$data)
-            if (length(content$data)>0){ cat(l, " ")}  
+            if (length(content$data)>0){ message(l, " posts")}  
         
             ## retrying 3 times if error was found
             error <- 0
             while (is.null(content$meta) | content$meta != 200){
-                cat("Error!\n")
+                message("Error!")
                 Sys.sleep(0.5)
                 error <- error + 1
                 content <- callAPI(url, token)      
@@ -96,7 +96,7 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
             
             # downloading pictures
             if (!is.null(folder)){
-                if (verbose) cat("Downloading pictures...")
+                if (verbose) message("Downloading pictures...")
                 downloadPictures(new.df, folder)
             }
             

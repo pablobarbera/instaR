@@ -43,7 +43,7 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
         "/followed-by?count=100")
     content <- callAPI(url, token)
     l <- length(content$data)
-    if (verbose) cat(l, "users ")
+    if (verbose) message(l, " followers")
 
     ## Error trap
     if (length(content$data)==0){ 
@@ -58,7 +58,7 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
         df.list <- list(df)
         while (length(content$data)>0 && (length(content$pagination)!=0) &&
             !is.null(content$pagination['next_url'])){
-            cat(content$pagination$'next_url', "\n")    
+            #message(content$pagination$'next_url')
             error <- tryCatch(content <- callAPI(content$pagination['next_url'], 
                 token), error=function(e) e)
             if (inherits(error, 'error')){
@@ -66,7 +66,7 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
                 content <- callAPI(content$pagination['next_url'], token)
             }
             l <- l + length(content$data)
-            if (length(content$data)>0){ cat(l, " ")}  
+            if (length(content$data)>0){ message(l, " followers")}  
                    
             new.df <- userListToDF(content$data)
      

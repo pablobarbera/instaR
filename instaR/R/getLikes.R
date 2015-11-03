@@ -33,7 +33,7 @@ getLikes <- function(id, token, verbose=TRUE){
   url <- paste0("https://api.instagram.com/v1/media/",id,"/likes")
   content <- callAPI(url, token)
   l <- length(content$data)
-  if (verbose) cat(l, "likes ")
+  if (verbose) message(l, " likes")
   
   if (length(content$data)==0){ 
     stop("Error. No Likes?")

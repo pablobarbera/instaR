@@ -30,7 +30,7 @@ getPopular <- function(token, verbose=TRUE){
   content <- callAPI(url, token)
   
   l <- length(content$data)
-  if (verbose) cat(l, "popular videos/pics")
+  if (verbose) message(l, " popular videos/pics")
   
   ## Error trap
   if (length(content$data)==0){ 
