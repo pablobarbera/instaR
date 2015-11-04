@@ -1,8 +1,8 @@
 Package: instaR
 Title: Access to Instagram API via R
 Description: Provides an interface to the Instagram API.
-Version: 0.2.0
-Date: 2015-11-03
+Version: 0.2.1
+Date: 2015-11-04
 Author: Pablo Barbera [aut, cre], Tiago Dantas [ctb], Jonne Guyt [ctb]
 Maintainer: Pablo Barbera <pablo.barbera@nyu.edu>
 URL: https://github.com/pablobarbera/instaR
