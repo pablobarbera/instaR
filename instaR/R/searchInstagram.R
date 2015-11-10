@@ -78,7 +78,7 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
     message('"mindate" and "maxdate" options only work in combination with a location and will be ignored.')
   }
   if (!is.null(mindate) && as.POSIXct(mindate) > as.POSIXct(maxdate)){
-    error('"mindate" should be less than "maxdate".')
+    stop('"mindate" should be less than "maxdate".')
   }
   content <- callAPI(url, token)
   l <- length(content$data)
