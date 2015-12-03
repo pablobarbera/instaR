@@ -7,9 +7,9 @@ hljs.initHighlightingOnLoad();
 instaR: Access to Instagram API via R
 ---------
 
-INITIAL RELEASE.
-
 This package provides a series of functions that allow R users to access Instagram's API to search for media that mention specific hashtags or were sent from a certain location, to download recent pictures from a given users, and to capture lists of followers.
+
+__IMPORTANT__: according to the [updated platform policy](https://www.instagram.com/developer/changelog/), access to most endpoints of the Instagram API (including those that return public data) requires previous approval by Instagram. More information about the permission review process can be found [here](https://www.instagram.com/developer/review/). 
 
 ## Getting Started from GitHub
 To install from github, first install the devtools package and and then run ``devtools::install_github("pablobarbera/instaR/instaR")``
