@@ -66,7 +66,7 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
                 content <- callAPI(content$pagination['next_url'], token)
             }
             l <- l + length(content$data)
-            if (length(content$data)>0){ message(l, " followers")}  
+            if (length(content$data)>0 && verbose){ message(l, " followers")}  
                    
             new.df <- userListToDF(content$data)
      
