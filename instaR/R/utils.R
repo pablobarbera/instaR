@@ -126,15 +126,15 @@ callAPI <- function(url, token){
     if (class(token)[1]!="config" & class(token)[1]!="Token2.0"){
         stop("Error in access token. See help for details.")
     }
-    error <- tryCatch(content <- rjson::fromJSON(rawToChar(url.data$content), 
+    error <- tryCatch(content <- jsonlite::fromJSON(rawToChar(url.data$content), 
         unexpected.escape = "skip"), error=function(e) e)
     # retrying 3 times if error
     if (inherits(error, 'error')){
         err <- 0
         while (inherits(error, 'error')){
             Sys.sleep(.5)
-            error <- tryCatch(content <- rjson::fromJSON(rawToChar(url.data$content), 
-                unexpected.escape = "skip"), error=function(e) e)
+            error <- tryCatch(content <- jsonlite::fromJSON(rawToChar(url.data$content), 
+                flatten=TRUE), error=function(e) e)
             err <- err + 1
             if (err==3){ stop("Error!") }
         }

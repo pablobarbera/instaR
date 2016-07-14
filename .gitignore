@@ -1,3 +1,4 @@
 *.history
 *.tar.gz
 .Rproj.user
+*.Rhistory
