@@ -1,3 +1,9 @@
+# IMPORTANT NOTE: most of the examples below assume you have a token
+# with the permissions required to access public content.
+# Without this token, only getTagCount, getUserMedia, and getUser are
+# available to any user, and with some limitations (see the documentation
+# for each function for more details).
+
 # app_id <- "AAAAAA"
 # app_secret <- "YYYYYXXXXYYY"
 # token <- instaOAuth(app_id, app_secret)
