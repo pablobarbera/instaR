@@ -83,8 +83,8 @@ instaOAuth <- function(app_id, app_secret, scope="basic"){
         }   
     }
     
-    ## current httr version
-    if (packageVersion('httr') > "0.6.1"){
+    ## httr version from 0.6 to 1.1
+    if (packageVersion('httr') > "0.6.1" & packageVersion('httr') < "1.2"){
         Sys.setenv("HTTR_SERVER_PORT" = "1410/")
         token <- httr::oauth2.0_token(instagram, myapp, cache=FALSE, scope=scope)
         if (httr::GET(paste0("https://api.instagram.com/v1/users/self/feed?count=1", 
@@ -94,6 +94,15 @@ instaOAuth <- function(app_id, app_secret, scope="basic"){
         }  
     }
 
+    ## current version of httr
+    if (packageVersion('httr') >= "1.2"){
+        token <- oauth2.0_token(instagram, myapp, cache=FALSE, scope=scope)
+        if (GET(paste0("https://api.instagram.com/v1/users/self/feed?count=1", 
+                "&access_token=", 
+                token$credentials$access_token))$status==200){
+            message("Authentication successful.")
+        }  
+    }
     return(token)
 }
 
