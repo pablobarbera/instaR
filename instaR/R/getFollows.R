@@ -8,6 +8,12 @@
 #' \code{getFollows} retrieves the list of users that a given user follows,
 #' as well as basic information about all of them.
 #'
+#' @details
+#' IMPORTANT: After June 1st, 2016 only applications that have passed permission
+#' review by Instagram will be allowed to access data for users other than the
+#' authenticated user. See  \url{https://www.instagram.com/developer/review/} 
+#' for more information.
+#'
 #' @author
 #' Pablo Barbera \email{pablo.barbera@@nyu.edu}
 #'

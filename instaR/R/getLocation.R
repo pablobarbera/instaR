@@ -18,7 +18,7 @@
 #' ## See examples for instaOAuth to know how token was created.
 #' ## Capturing information about a location
 #'  load("my_oauth")
-#'  loc_id_info <- getLocation( location_id=423423, token=my_oauth,)
+#'  loc_id_info <- getLocation( location_id=423423, token=my_oauth)
 #' }
 #'
 

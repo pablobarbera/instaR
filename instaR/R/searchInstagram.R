@@ -20,6 +20,10 @@
 #' The \code{mindate} and \code{maxdata} search parameters only work when searching
 #' by location, not when searching by tag.
 #'
+#' IMPORTANT: After June 1st, 2016 only applications that have passed permission
+#' review by Instagram will be allowed to access this API endpoint. See 
+#' \url{https://www.instagram.com/developer/review/} for more information.
+#'
 #' @author
 #' Pablo Barbera \email{pablo.barbera@@nyu.edu}
 #' @seealso \code{\link{instaOAuth}}
@@ -82,7 +86,8 @@ searchInstagram <- function(tag=NULL, token, n=100, lat=NULL, lng=NULL,
   }
   content <- callAPI(url, token)
   l <- length(content$data)
-  if (l==0) stop("0 posts found.")
+  if (l==0) stop(c("0 posts found. Does this application have permission to access public content?",
+      " See ?searchInstagram for more information"))
   if (verbose) message(l, " posts")
   
   ## retrying 3 times if error was found

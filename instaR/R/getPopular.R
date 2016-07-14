@@ -7,6 +7,12 @@
 #' @description
 #' \code{getPopular} retrieves up to 24 popular instagram posts
 #'
+#' @details
+#' IMPORTANT: After June 1st, 2016 only applications that have passed permission
+#' review by Instagram will be allowed to access data for users other than the
+#' authenticated user. See  \url{https://www.instagram.com/developer/review/} 
+#' for more information.
+#'
 #' @author
 #' Jonne Guyt \email{j.y.guyt@@uva.nl}
 #'

@@ -7,6 +7,13 @@
 #' @description
 #' \code{getUser} retrieves public information about Instagram user
 #'
+#' @details
+#'
+#' IMPORTANT: After June 1st, 2016 only applications that have passed permission
+#' review by Instagram will be allowed to access data for users other than the
+#' authenticated user. See  \url{https://www.instagram.com/developer/review/} 
+#' for more information.
+#'
 #' @author
 #' Pablo Barbera \email{pablo.barbera@@nyu.edu}
 #'
@@ -29,7 +36,8 @@ getUser <- function(username, token, userid=NULL){
     if (is.null(userid)){
         url <- paste0("https://api.instagram.com/v1/users/search?q=", username)
         content <- callAPI(url, token)
-        if (length(content$data)==0) stop("Error. User name not found.")
+        if (length(content$data)==0) stop(c("Error. User name not found. ",
+            "Does this application have permission to access public content?"))
         userid <- as.numeric(content$data[[1]]$id)
     }
 

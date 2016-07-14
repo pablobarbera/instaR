@@ -7,6 +7,12 @@
 #' @description
 #' \code{getLikes} retrieves the list of users who liked a photo.
 #'
+#' @details
+#' IMPORTANT: After June 1st, 2016 only applications that have passed permission
+#' review by Instagram will be allowed to access data for users other than the
+#' authenticated user. See  \url{https://www.instagram.com/developer/review/} 
+#' for more information.
+#'
 #' @author
 #' Tiago Dantas \email{t.mendesdantas@@gmail.com}
 #'
