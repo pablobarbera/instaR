@@ -3,16 +3,16 @@ Title: Access to Instagram API via R
 Description: Provides an interface to the Instagram API <https://instagram.com/
     developer/>, which allows R users to download public pictures filtered by
     hashtag, popularity, user or location, and to access public users' profile data.
-Version: 0.2.2
-Date: 2015-11-09
+Version: 0.2.3
+Date: 2016-07-13
 Author: Pablo Barbera [aut, cre], Tiago Dantas [ctb], Jonne Guyt [ctb]
-Maintainer: Pablo Barbera <pablo.barbera@nyu.edu>
+Maintainer: Pablo Barbera <pbarbera@usc.edu>
 URL: https://github.com/pablobarbera/instaR
 BugReports: https://github.com/pablobarbera/instaR/issues
 Depends:
     R (>= 2.12.0),
     httr,
-    rjson
+    jsonlite
 License: GPL-2
 Collate:
     'getFollowers.R'
