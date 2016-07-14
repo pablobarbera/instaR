@@ -46,7 +46,7 @@
 #' }
 #'
 
-instaOAuth <- function(app_id, app_secret, scope="basic"){
+instaOAuth <- function(app_id, app_secret, scope=c("basic", "public_content")){
 
     ## getting callback URL
     full_url <- httr::oauth_callback()
