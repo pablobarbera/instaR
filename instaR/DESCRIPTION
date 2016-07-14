@@ -1,6 +1,8 @@
 Package: instaR
 Title: Access to Instagram API via R
-Description: Provides an interface to the Instagram API <https://instagram.com/developer/>, which allows R users to download public pictures filtered by hashtag, popularity, user or location, and to access public users' profile data.
+Description: Provides an interface to the Instagram API <https://instagram.com/
+    developer/>, which allows R users to download public pictures filtered by
+    hashtag, popularity, user or location, and to access public users' profile data.
 Version: 0.2.2
 Date: 2015-11-09
 Author: Pablo Barbera [aut, cre], Tiago Dantas [ctb], Jonne Guyt [ctb]
@@ -25,3 +27,4 @@ Collate:
     'getLikes.R'
     'getPopular.R'
     'getLocation.R'
+RoxygenNote: 5.0.1

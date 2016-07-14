@@ -20,7 +20,9 @@
 #' 
 #' @param token An OAuth token created with \code{instaOAuth}.
 #'
-#' @param n Maximum number of media to return.
+#' @param n Maximum number of media to return. Currently it is only possible to
+#' download the 20 most recent pictures or videos on the authenticated user's 
+#' profile, unless Instagram has approved the application.
 #'
 #' @param folder If different than \code{NULL}, will download all pictures
 #' to this folder.
