@@ -1,3 +1,13 @@
+.onAttach <- function(...) {
+ 
+   packageStartupMessage("##\n## instaR: Access to Instagram API via R")
+   packageStartupMessage("## Note: due to recent changes in the Instagram")
+   packageStartupMessage("## API, access to most endpoints now require ")
+   packageStartupMessage("## previous approval from Instagram. See:")
+   packageStartupMessage("## https://www.instagram.com/developer/review/\n##")
+
+}
+
 unlistWithNA <- function(lst, field){
     if (length(field)==1){
         notnulls <- unlist(lapply(lst, function(x) !is.null(x[[field]])))
