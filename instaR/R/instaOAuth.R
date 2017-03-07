@@ -12,7 +12,7 @@
 #' of one of its examples.
 #'
 #' @details
-#' To obtan your \code{app_id} and \code{app_secret}, do the following steps.
+#' To obtain your \code{app_id} and \code{app_secret}, do the following steps.
 #' First, go to \url{http://instagram.com/developer/} and register your
 #' application with any name. Then, run the \code{instaOAuth} function with
 #' your "Client ID" and "Client Secret" as arguments. It will return a URL,
