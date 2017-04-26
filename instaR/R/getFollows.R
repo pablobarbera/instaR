@@ -42,7 +42,7 @@ getFollows <- function(username, token, userid=NULL, verbose=TRUE){
         url <- paste0("https://api.instagram.com/v1/users/search?q=", username)
         content <- callAPI(url, token)
         if (length(content$data)==0) stop("Error. User name not found.")
-        userid <- as.numeric(content$data[[1]]$id)
+        userid <- as.numeric(content$data[1]$id)
     }
 
     url <- paste0("https://api.instagram.com/v1/users/", userid, "/follows")
