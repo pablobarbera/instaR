@@ -67,10 +67,9 @@ review by Instagram will be allowed to access this API endpoint. See
 }
 
 }
-\author{
-Pablo Barbera \email{pablo.barbera@nyu.edu}
-}
 \seealso{
 \code{\link{instaOAuth}}
 }
-
+\author{
+Pablo Barbera \email{pablo.barbera@nyu.edu}
+}

@@ -20,7 +20,7 @@
 #' ## See examples for instaOAuth to know how token was created.
 #' ## Capturing information about #nofilter
 #'  load("my_oauth")
-#'  getTagCount( tag="nofilter, token=my_oauth,)
+#'  getTagCount( tag="nofilter", token=my_oauth,)
 #' }
 #'
 

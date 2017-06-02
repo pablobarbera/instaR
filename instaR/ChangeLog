@@ -22,3 +22,8 @@
 2016-07-13 - version 0.2.3
 	- more informative errors messages re: API changes
 	- now depends on jsonlite instead of rjson
+2016-07-13 - version 0.2.3
+	- more informative errors messages re: API changes
+	- now depends on jsonlite instead of rjson
+2017-06-01 - version 0.2.5
+	- minor fixes

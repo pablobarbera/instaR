@@ -36,4 +36,3 @@ for more information.
 \author{
 Tiago Dantas \email{t.mendesdantas@gmail.com}
 }
-

@@ -26,4 +26,3 @@ getLocation(location_id, token)
 \author{
 Jonne Guyt \email{j.y.guyt@uva.nl}
 }
-

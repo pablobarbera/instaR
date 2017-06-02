@@ -1,3 +1,6 @@
+#' @import jsonlite httr
+#' @importFrom utils packageVersion
+
 .onAttach <- function(...) {
  
    packageStartupMessage("##\n## instaR: Access to Instagram API via R")
