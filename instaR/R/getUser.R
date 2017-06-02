@@ -36,9 +36,13 @@ getUser <- function(username, token, userid=NULL){
     if (is.null(userid)){
         url <- paste0("https://api.instagram.com/v1/users/search?q=", username)
         content <- callAPI(url, token)
-        if (length(content$data)==0) stop(c("Error. User name not found. ",
-            "Does this application have permission to access public content?"))
-        userid <- as.numeric(content$data[[1]]$id)
+        if (length(content$data)==0) stop("Error. User name not found.")
+        if ('id' %in% names(content$data)){
+            userid <- as.numeric(content$data$id)
+        }
+        if (! 'id' %in% names(content$data)){
+            userid <- as.numeric(content$data[[1]]$id)
+        }
     }
 
     url <- paste0("https://api.instagram.com/v1/users/", userid)
