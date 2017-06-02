@@ -61,7 +61,7 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
     if (content$meta$code==400){
         stop(content$meta$error_message)
     }
-    l <- length(content$data)
+    l <- length(content$data$id)
     if (verbose) message(l, " posts")
 
     ## retrying 3 times if error was found
@@ -73,8 +73,8 @@ getUserMedia <- function(username, token, n=30, folder=NULL, userid=NULL, verbos
         content <- callAPI(url, token)      
         if (error==3){ stop("Error") }
     }
-    if (length(content$data)==0){ 
-        stop("No public posts mentioning the string were found")
+    if (length(content$data$id)==0){ 
+        stop("No public posts for this user were found")
     }
 
     df <- searchListToDF(content$data)
