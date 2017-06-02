@@ -42,7 +42,12 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
         url <- paste0("https://api.instagram.com/v1/users/search?q=", username)
         content <- callAPI(url, token)
         if (length(content$data)==0) stop("Error. User name not found.")
-        userid <- as.numeric(content$data[1]$id)
+        if ('id' %in% names(content$data)){
+            userid <- as.numeric(content$data$id)
+        }
+        if (! 'id' %in% names(content$data)){
+            userid <- as.numeric(content$data[[1]]$id)
+        }
     }
 
     url <- paste0("https://api.instagram.com/v1/users/", userid, 
@@ -52,6 +57,9 @@ getFollowers <- function(username, token, userid=NULL, verbose=TRUE){
     if (verbose) message(l, " followers")
 
     ## Error trap
+    if ('meta' %in% names(content)){ 
+        stop(content$meta$error_message)
+    }
     if (length(content$data)==0){ 
         stop("Error. Zero followers?")
     }
